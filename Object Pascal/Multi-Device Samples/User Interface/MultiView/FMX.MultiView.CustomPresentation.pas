@@ -23,7 +23,7 @@ type
 
   TMultiViewAlertPresentation = class(TMultiViewPresentation)
   private
-    FDetailOverlay: TShadowedOverlayLayout;
+    FDetailOverlay: TTouchInterceptingLayout;
     FFrame: TPanel;
     { Messaging }
     procedure DoFormReleased(const Sender: TObject; const M: TMessage);
@@ -56,7 +56,7 @@ begin
   TMessageManager.DefaultManager.SubscribeToMessage(TFormReleasedMessage, DoFormReleased);
 
   // Detail overlay layer for catching mouse events
-  FDetailOverlay := TShadowedOverlayLayout.Create(nil);
+  FDetailOverlay := TTouchInterceptingLayout.Create(nil);
   FDetailOverlay.Stored := False;
   FDetailOverlay.Mode := TOverlayMode.AllLocalArea;
   FDetailOverlay.EnabledShadow := MultiView.ShadowOptions.Enabled;
@@ -75,7 +75,9 @@ destructor TMultiViewAlertPresentation.Destroy;
 begin
   inherited;
   TMessageManager.DefaultManager.Unsubscribe(TFormReleasedMessage, DoFormReleased);
+
   FDetailOverlay.Free;
+  FFrame.Free;
 end;
 
 procedure TMultiViewAlertPresentation.DoClose(const ASpeed: Single);
@@ -103,8 +105,7 @@ begin
     MultiView.MasterButton.Visible := True;
 end;
 
-procedure TMultiViewAlertPresentation.DoMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X,
-  Y: Single);
+procedure TMultiViewAlertPresentation.DoMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
 begin
   Close;
 end;

@@ -12,6 +12,7 @@
 unit MusicPlayer.Utils;
 
 interface
+
 uses
 {$IFDEF IOS}
   FMX.Types,
@@ -43,7 +44,7 @@ type
 {$ENDIF}
     class function EmptySong: TMPSong; static;
     class function DurationToString(duration: Single): string; static;
-    function Equals(song : TMPSong): Boolean;
+    function Equals(song: TMPSong): Boolean;
   end;
 
   TMPAlbum = record
@@ -54,20 +55,9 @@ type
     class function AllMusicAlbum: TMPAlbum; static;
   end;
 
-  TOnSongChangeEvent = procedure (newIndex: Integer) of object;
-  TOnProcessPlayEvent = procedure (newPos: Single) of object;
-{$IFDEF IOS}
-  function MPMediaItemPropertyTitle: NSString;
-  function MPMediaItemPropertyAlbumTitle: NSString;
-  function MPMediaItemPropertyArtist: NSString;
-  function MPMediaItemPropertyArtwork: NSString;
-  function MPMediaItemPropertyPlaybackDuration: NSString;
-  function MPMediaItemPropertyMediaType: NSString;
-  function MPMediaItemPropertyComposer: NSString;
-  function MPMediaItemPropertyGenre: NSString;
-  function MPMediaPlaylistPropertyName: NSString;
-  function MPMediaItemPropertyPodcastTitle: NSString;
-{$ENDIF}
+  TOnSongChangeEvent = procedure(newIndex: Integer) of object;
+  TOnProcessPlayEvent = procedure(newPos: Single) of object;
+
 implementation
 
 { TMPAlbum }
@@ -95,9 +85,7 @@ end;
 
 class function TMPSong.DurationToString(duration: Single): string;
 var
-  hours,
-  minutes,
-  seconds: Integer;
+  hours, minutes, seconds: Integer;
   secondsStr: string;
 begin
   Result := '';
@@ -124,6 +112,7 @@ begin
 
   Result := Result + minutes.ToString + ':' + secondsStr;
 end;
+
 {$IFDEF ANDROID}
 class function TMPSong.FromCursor(c: JCursor): TMPSong;
 begin
@@ -138,70 +127,16 @@ end;
 {$ENDIF}
 
 {$IFDEF IOS}
-const
-  libMediaPlayer = '/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer';
-
 class function TMPSong.FromMediaItem(Item: MPMediaItem): TMPSong;
 begin
   Result.Artist := NSStrToStr(TNSString.Wrap(Item.valueForProperty(MPMediaItemPropertyArtist)));
   Result.Album := NSStrToStr(TNSString.Wrap(Item.valueForProperty(MPMediaItemPropertyAlbumTitle)));
   Result.Title := NSStrToStr(TNSString.Wrap(Item.valueForProperty(MPMediaItemPropertyTitle)));
-  Result.Duration := TMPSong.DurationTOString(TNSNumber.Wrap
-      (Item.valueForProperty(MPMediaItemPropertyPlaybackDuration)).floatValue);
+  Result.Duration := TMPSong.DurationTOString(TNSNumber.Wrap(Item.valueForProperty(MPMediaItemPropertyPlaybackDuration)).floatValue);
   Result.MPItem := Item;
   Result.MPItem.retain;
   if Result.Artist = '' then
-      Result.Artist := 'Unknown';
-end;
-
-function MPMediaItemPropertyTitle: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyTitle');
-end;
-
-function MPMediaItemPropertyAlbumTitle: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyAlbumTitle');
-end;
-
-function MPMediaItemPropertyArtist: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyArtist');
-end;
-
-function MPMediaItemPropertyArtwork: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyArtwork');
-end;
-
-function MPMediaItemPropertyPlaybackDuration: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyPlaybackDuration');
-end;
-
-function MPMediaItemPropertyMediaType: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyMediaType');
-end;
-
-function MPMediaItemPropertyComposer: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyComposer');
-end;
-
-function MPMediaItemPropertyGenre: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyGenre');
-end;
-
-function MPMediaPlaylistPropertyName: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaPlaylistPropertyName');
-end;
-
-function MPMediaItemPropertyPodcastTitle: NSString;
-begin
-  Result := CocoaNSStringConst(libMediaPlayer, 'MPMediaItemPropertyPodcastTitle');
+    Result.Artist := 'Unknown';
 end;
 {$ENDIF}
 

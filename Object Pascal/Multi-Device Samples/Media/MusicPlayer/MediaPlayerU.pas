@@ -1,15 +1,15 @@
 //---------------------------------------------------------------------------
-// Copyright (c) 2016 Embarcadero Technologies, Inc. All rights reserved.  
+// Copyright (c) 2016 Embarcadero Technologies, Inc. All rights reserved.
 //
-// This software is the copyrighted property of Embarcadero Technologies, Inc. 
-// ("Embarcadero") and its licensors. You may only use this software if you 
-// are an authorized licensee of Delphi, C++Builder or RAD Studio 
-// (the "Embarcadero Products").  This software is subject to Embarcadero's 
-// standard software license and support agreement that accompanied your 
-// purchase of the Embarcadero Products and is considered a Redistributable, 
-// as such term is defined thereunder. Your use of this software constitutes 
-// your acknowledgement of your agreement to the foregoing software license 
-// and support agreement. 
+// This software is the copyrighted property of Embarcadero Technologies, Inc.
+// ("Embarcadero") and its licensors. You may only use this software if you
+// are an authorized licensee of Delphi, C++Builder or RAD Studio
+// (the "Embarcadero Products").  This software is subject to Embarcadero's
+// standard software license and support agreement that accompanied your
+// purchase of the Embarcadero Products and is considered a Redistributable,
+// as such term is defined thereunder. Your use of this software constitutes
+// your acknowledgement of your agreement to the foregoing software license
+// and support agreement.
 //---------------------------------------------------------------------------
 unit MediaPlayerU;
 
@@ -18,7 +18,7 @@ interface
 uses
   MusicPlayer.Utils,
   {$IFDEF IOS}
-  MusicPlayer.iOS,
+  MusicPlayer.iOS, iOSapi.MediaPlayer,
   {$ENDIF}
   {$IFDEF ANDROID}
   MusicPlayer.Android,
@@ -90,13 +90,13 @@ type
     FPermissionReadExternalStorage: string;
     procedure DisplayRationale(Sender: TObject; const APermissions: TArray<string>; const APostRationaleProc: TProc);
     procedure ReadStoragePermissionRequestResult(Sender: TObject; const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>);
+    procedure RequestMediaLibraryAccessHandler(Status: MPMediaLibraryAuthorizationStatus);
     procedure DoUpdateUI(newPos: Single);
     procedure UpdateNowPlaying(newIndex: Integer);
     procedure UpdateSongs;
     procedure SongChanged(newIndex: Integer);
     procedure StateChanged(state: TMPPlaybackState);
-  public
-    { Public declarations }
+    procedure QuerySongs;
   end;
 
 var
@@ -116,13 +116,18 @@ uses
 
 procedure TFMXMusicPlayerFrm.FormCreate(Sender: TObject);
 begin
-{$IFDEF ANDROID}
-  tcUITabs.TabPosition := TTabPosition.Top;
-  FPermissionReadExternalStorage := JStringToString(TJManifest_permission.JavaClass.READ_EXTERNAL_STORAGE);
-{$ENDIF}
   TMusicPlayer.DefaultPlayer.OnSongChange := SongChanged;
   TMusicPlayer.DefaultPlayer.OnProcessPlay := DoUpdateUI;
-  PermissionsService.RequestPermissions([FPermissionReadExternalStorage], ReadStoragePermissionRequestResult, DisplayRationale)
+
+{$IFDEF ANDROID}
+  tcUITabs.TabPosition := TTabPosition.Top;
+
+  FPermissionReadExternalStorage := JStringToString(TJManifest_permission.JavaClass.READ_EXTERNAL_STORAGE);
+  PermissionsService.RequestPermissions([FPermissionReadExternalStorage], ReadStoragePermissionRequestResult, DisplayRationale);
+{$ENDIF}
+{$IFDEF IOS}
+  TMPMediaLibrary.OCClass.requestAuthorization(RequestMediaLibraryAccessHandler);
+{$ENDIF}
 end;
 
 procedure TFMXMusicPlayerFrm.FormDestroy(Sender: TObject);
@@ -204,35 +209,54 @@ begin
 end;
 
 procedure TFMXMusicPlayerFrm.ReadStoragePermissionRequestResult(Sender: TObject; const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>);
+begin
+  // 1 permission involved: READ_EXTERNAL_STORAGE
+  if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
+    QuerySongs
+  else
+    TDialogService.ShowMessage('Cannot list out the song files because the required permission is not granted');
+end;
+
+procedure TFMXMusicPlayerFrm.RequestMediaLibraryAccessHandler(Status: MPMediaLibraryAuthorizationStatus);
+begin
+  TThread.Queue(nil,
+    procedure
+    begin
+      if Status = MPMediaLibraryAuthorizationStatusAuthorized then
+        QuerySongs
+      else
+        TDialogService.ShowMessage('Cannot list out the song files because the required permission is not granted');
+    end);
+end;
+
+procedure TFMXMusicPlayerFrm.QuerySongs;
 var
   Item: TListViewItem;
   album: TMPAlbum;
 begin
-  // 1 permission involved: READ_EXTERNAL_STORAGE
-  if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
+  TMusicPlayer.DefaultPlayer.GetAlbums;
+  TMusicPlayer.DefaultPlayer.GetSongs;
+
+  if Length(TMusicPlayer.DefaultPlayer.Albums) >= 2 then
   begin
-    TMusicPlayer.DefaultPlayer.GetAlbums;
-    TMusicPlayer.DefaultPlayer.GetSongs;
-    if Length(TMusicPlayer.DefaultPlayer.Albums) >= 2 then
+    lvAlbums.BeginUpdate;
+
+    for album in TMusicPlayer.DefaultPlayer.Albums do
     begin
-      lvAlbums.BeginUpdate;
-      for album in TMusicPlayer.DefaultPlayer.Albums do
-      begin
-        Item := lvAlbums.Items.Add;
-        Item.Text := album.Name;
-        Item.Detail := album.Artist;
-        Item.Bitmap := album.Artwork
-      end;
-      lvAlbums.EndUpdate;
-      UpdateSongs;
-      RepeatItemsClick(All);
-      StateChanged(TMPPlaybackState.Stopped);
-    end
-    else
-      TDialogService.ShowMessage('There is no music on this device');
+      Item := lvAlbums.Items.Add;
+      Item.Text := album.Name;
+      Item.Detail := album.Artist;
+      Item.Bitmap := album.Artwork
+    end;
+
+    lvAlbums.EndUpdate;
+
+    UpdateSongs;
+    RepeatItemsClick(All);
+    StateChanged(TMPPlaybackState.Stopped);
   end
   else
-    TDialogService.ShowMessage('Cannot list out the music files because the required permission is not granted');
+    TDialogService.ShowMessage('There is no song on this device');
 end;
 
 procedure TFMXMusicPlayerFrm.RepeatItemsClick(Sender: TObject);

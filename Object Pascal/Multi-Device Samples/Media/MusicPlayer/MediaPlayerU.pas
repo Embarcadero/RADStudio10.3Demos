@@ -90,7 +90,9 @@ type
     FPermissionReadExternalStorage: string;
     procedure DisplayRationale(Sender: TObject; const APermissions: TArray<string>; const APostRationaleProc: TProc);
     procedure ReadStoragePermissionRequestResult(Sender: TObject; const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>);
+{$IFDEF IOS}
     procedure RequestMediaLibraryAccessHandler(Status: MPMediaLibraryAuthorizationStatus);
+{$ENDIF}
     procedure DoUpdateUI(newPos: Single);
     procedure UpdateNowPlaying(newIndex: Integer);
     procedure UpdateSongs;
@@ -217,6 +219,7 @@ begin
     TDialogService.ShowMessage('Cannot list out the song files because the required permission is not granted');
 end;
 
+{$IFDEF IOS}
 procedure TFMXMusicPlayerFrm.RequestMediaLibraryAccessHandler(Status: MPMediaLibraryAuthorizationStatus);
 begin
   TThread.Queue(nil,
@@ -228,6 +231,7 @@ begin
         TDialogService.ShowMessage('Cannot list out the song files because the required permission is not granted');
     end);
 end;
+{$ENDIF}
 
 procedure TFMXMusicPlayerFrm.QuerySongs;
 var

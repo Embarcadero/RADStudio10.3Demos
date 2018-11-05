@@ -27,9 +27,6 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormCreate(TObject *Sender)
 {
-  ClearButton = new TClearEditButton(edtSearch);
-  ClearButton->Lock();
-  ClearButton->Parent = edtSearch;
   LoadData(NULL);
 }
 //---------------------------------------------------------------------------

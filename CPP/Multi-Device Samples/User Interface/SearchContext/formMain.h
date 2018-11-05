@@ -42,18 +42,17 @@ __published:	// IDE-managed Components
 	TMenuItem *miLoadData;
 	TMenuItem *miLoadImages;
 	TMenuItem *miManageData;
+	TClearEditButton *ClearEditButton1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall LoadData(TObject *Sender);
 	void __fastcall LoadImagesClick(TObject *Sender);
 	void __fastcall ManageDataClick(TObject *Sender);
-	void __fastcall edtSearchKeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
-		  TShiftState Shift);
+	void __fastcall edtSearchKeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar, TShiftState Shift);
 	void __fastcall ItemSelected(TObject *Sender);
 	void __fastcall edtSearchChange(TObject *Sender);
 private:	// User declarations
 	TSearchBandManager *SearchBandManager;
 	TSearchBand* __fastcall InitializeBandManager();
-	TClearEditButton *ClearButton;
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
 };

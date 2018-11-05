@@ -78,7 +78,7 @@ void __fastcall TMainForm::DisableEuropePurchaseUI(bool BecauseOfPurchase)
 {
 	ConsumeListBoxItem->Enabled = true;
 	EuropeListBoxItem->Enabled = false;
-	EuropeListBoxItem->OnClick = NULL;
+	EuropeListBoxItem->OnClick = nullptr;
 	if(BecauseOfPurchase) {
 		DisableAdsListBoxItem->Text = "Europe pack is now owned";
 		ListBoxItem4->Visible = true;
@@ -89,7 +89,7 @@ void __fastcall TMainForm::DisablePurchaseUI(bool BecauseOfPurchase)
 {
 	ConsumeListBoxItem->Enabled = true;
 	DisableAdsListBoxItem->Enabled = false;
-	DisableAdsListBoxItem->OnClick = NULL;
+	DisableAdsListBoxItem->OnClick = nullptr;
 	if (BecauseOfPurchase) {
 		DisableAdsListBoxItem->Text = "In-App adverts are disabled";
 	}

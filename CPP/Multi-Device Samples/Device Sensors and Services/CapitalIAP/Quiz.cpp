@@ -101,7 +101,7 @@ const StateInfo euStates[] = {
     { "United Kingdom", "London", { "Manchester", "Belfast", "Liverpool", "Dublin" } } };
 
 const StateInfo westStates[] = {
-    { "Alaska", "Anchorage", { "Fairbanks", "Juneau", "Sitka", "Ketchikan" } },
+    { "Alaska", "Juneau", { "Fairbanks", "Anchorage", "Sitka", "Ketchikan" } },
     { "Arizona", "Phoenix", { "Tucson", "Mesa", "Chandler", "Glendale" } },
     { "California", "Sacramento", { "Los Angeles", "San Diego", "San Jose", "San Francisco" } },
     { "Colorado", "Denver", { "Colorado Springs", "Aurora", "Fort Collins", "Lakewood" } },

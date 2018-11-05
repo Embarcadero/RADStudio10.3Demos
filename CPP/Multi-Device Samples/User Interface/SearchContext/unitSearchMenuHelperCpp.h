@@ -47,7 +47,7 @@
 	TSearchItem (TComponent *AOwner, TAlphaColor BackGroundColor, TAlphaColor GlowColor, TImage *SourceImage, String aText);
 	__fastcall ~TSearchItem ();
   __published :
-	__property String __fastcall SearchText = {read=GetSearchText, write=SetSearchText};
+	__property String SearchText = {read=GetSearchText, write=SetSearchText};
 	__property String Text = {read=GetText};
 	__property TNotifyEvent OnDblClick = {read=FOnDblClick, write=FOnDblClick};
 	__property TSearchState State = {read=FSearchState, write=SetSearchState};

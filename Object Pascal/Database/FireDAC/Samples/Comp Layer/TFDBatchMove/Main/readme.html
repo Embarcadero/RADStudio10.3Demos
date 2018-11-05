@@ -30,9 +30,9 @@
 <h2><span class="mw-headline" id="Location">Location</span></h2>
 <p>You can find the <b>TFDBatchMove</b> sample project at:
 </p>
-<ul><li> <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Carnival | Samples</b></font> and then navigate to:
+<ul><li> <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Rio | Samples</b></font> and then navigate to:
 <ul><li> <b>Object Pascal\DataBase\FireDAC\Samples\Comp Layer\TFDBatchMove\Main</b>.</li></ul></li>
-<li> <b>Subversion Repository for Delphi:</b> <a class="external free" href="http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Carnival/Object%20Pascal/Database/FireDAC/Samples/Comp%20Layer/TFDBatchMove/Main" rel="nofollow" target="_blank">http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Carnival/Object%20Pascal/Database/FireDAC/Samples/Comp%20Layer/TFDBatchMove/Main</a>.</li></ul>
+<li> <b>Subversion Repository for Delphi:</b> <a class="external free" href="http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Rio/Object%20Pascal/Database/FireDAC/Samples/Comp%20Layer/TFDBatchMove/Main" rel="nofollow" target="_blank">http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Rio/Object%20Pascal/Database/FireDAC/Samples/Comp%20Layer/TFDBatchMove/Main</a>.</li></ul>
 <h2><span class="mw-headline" id="Description">Description</span></h2>
 <p>This sample shows how to use the TFDBatchMove component to move information between different sources and destinations:
 </p>
@@ -52,7 +52,7 @@
 <li> Click <b>3. Move table to text</b> to move the table content to an output file <b>DataOut.txt</b>.</li></ul></li></ol>
 <h2><span class="mw-headline" id="Implementation">Implementation</span></h2>
 <p><b>1. Move text to table</b> button:
-</p><p>This button loads the content from a txt file located at <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Carnival | Samples</b></font>\Object Pascal\DataBase\FireDAC\Samples\Comp Layer\TFDBatchMove\Main\data.txt into a table from the selected DBMS.
+</p><p>This button loads the content from a txt file located at <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Rio | Samples</b></font>\Object Pascal\DataBase\FireDAC\Samples\Comp Layer\TFDBatchMove\Main\data.txt into a table from the selected DBMS.
 </p><p>The sample adds the <b>FireDAC.Comp.BatchMove.Text</b> unit to the interface uses section to allow the creation of a text reader <b>TFDBatchMoveTextReader</b> and a dataset writer <b>TFDBatchMoveDataSetWriter</b>.
 </p>
 <ul><li> Sets the <b>FileName</b> property of <b>TFDBatchMoveTextReader</b> with the location of <b>data.txt</b>. This is the file used to load the data to the table. Also several <b>DataDef</b> properties are adjusted according to the text file format.
@@ -72,7 +72,7 @@
 </p><p>The sample creates a <b>TFDBatchMoveDataSetReader</b> dataset reader and a <b>TFDBatchMoveTextWriter</b> text writer.
 </p>
 <ul><li> Uses the <b>Dataset</b> property of <b>TFDBatchMoveDataSetReader</b> to set the source dataset, <b>qryLoaded</b>.</li>
-<li> Sets the <b>FileName</b> property of <b>TFDBatchMoveTextWriter</b> to set the output file name and path: <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Carnival | Samples</b></font>\Object Pascal\DataBase\FireDAC\Samples\Comp Layer\TFDBatchMove\Main\DataOut.txt.</li></ul>
+<li> Sets the <b>FileName</b> property of <b>TFDBatchMoveTextWriter</b> to set the output file name and path: <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Rio | Samples</b></font>\Object Pascal\DataBase\FireDAC\Samples\Comp Layer\TFDBatchMove\Main\DataOut.txt.</li></ul>
 <p>It executes the TFDBatchMove component to create the file and save the data to the output file.
 </p>
 <h2><span class="mw-headline" id="Uses">Uses</span></h2>

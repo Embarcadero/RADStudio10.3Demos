@@ -37,10 +37,10 @@
 <h2><span class="mw-headline" id="Location">Location</span></h2>
 <p>You can find the <b>DBX2FDMigration</b> project at:
 </p>
-<ul><li> <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Carnival | Samples</b></font> and then navigate to:
+<ul><li> <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Rio | Samples</b></font> and then navigate to:
 <ul><li> <b>Object Pascal\Database\FireDAC\Tool\reFind\DBX2FDMigration\Demo\Forms</b></li></ul></li>
 <li> <b>Subversion Repository for Delphi:</b>
-<ul><li> <a class="external free" href="http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Carnival/Object%20Pascal/Database/FireDAC/Tool/reFind/DBX2FDMigration/Demo/Forms" rel="nofollow" target="_blank">http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Carnival/Object%20Pascal/Database/FireDAC/Tool/reFind/DBX2FDMigration/Demo/Forms</a></li></ul></li></ul>
+<ul><li> <a class="external free" href="http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Rio/Object%20Pascal/Database/FireDAC/Tool/reFind/DBX2FDMigration/Demo/Forms" rel="nofollow" target="_blank">http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Rio/Object%20Pascal/Database/FireDAC/Tool/reFind/DBX2FDMigration/Demo/Forms</a></li></ul></li></ul>
 <h2><span class="mw-headline" id="Description">Description</span></h2>
 <p>This sample project demonstrates how to migrate the project <b>MeetingOrganizer</b> from dbExpress to FireDAC using the reFind.exe tool.
 </p>
@@ -55,20 +55,20 @@
 <p>The following sections detail the steps of this procedure. 
 </p>
 <h3><span class="mw-headline" id="Run_Migrate.bat_Utility">Run Migrate.bat Utility</span></h3>
-<p>The <b>migrate.bat</b> utility is located in the <code class="path">C:\Users\Public\Documents\Embarcadero\Studio\20.0\Samples\Object Pascal\Database\FireDAC\Tool\reFind\DBX2FDMigration\Demo</code> folder. 
+<p>The <b>migrate.bat</b> utility is located in the <code class="path">C:\Users\Public\Documents\Embarcadero\Studio\\Samples\Object Pascal\Database\FireDAC\Tool\reFind\DBX2FDMigration\Demo</code> folder. 
 </p><p>The <b>migrate.bat</b> utility creates a new subdirectory <b>FireDAC_MeetingOrg</b> under <b>Forms</b>, and copies  the source files of your dbExpress application to the <b>FireDAC_MeetingOrg</b> folder. It keeps the original source files.
 </p><p>The utility runs the RAD Studio <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/reFind.exe,_the_Search_and_Replace_Utility_Using_Perl_RegEx_Expressions" title="rad en:reFind.exe, the Search and Replace Utility Using Perl RegEx Expressions">reFind</a> tool in order to <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/dbExpress_Name_Counterparts_(FireDAC)" title="rad en:dbExpress Name Counterparts (FireDAC)">replace the dbExpress terms</a> of the application with their FireDAC counterparts.
 </p><p>Example of reFind.exe usage:
 </p>
 <pre>reFind.exe FireDAC_MeetingOrg\*.pas FireDAC_MeetingOrg\*.dfm FireDAC_MeetingOrg\*.fmx /X:..\..\FireDAC_Migrate_DBX.txt
 </pre>
-<p>You can find the "reFind.exe" utility in "<code class="path">C:\Program Files (x86)\Embarcadero\Studio\20.0\bin\reFind.exe</code>".
+<p>You can find the "reFind.exe" utility in "<code class="path">C:\Program Files (x86)\Embarcadero\Studio\\bin\reFind.exe</code>".
 </p><p>To run <b>Migrate.bat</b>: 
 </p>
-<ol><li> Go to  <code class="path">C:\Users\Public\Documents\Embarcadero\Studio\20.0\Samples\Object Pascal\Database\FireDAC\Tool\reFind\DBX2FDMigration\Demo</code> folder. </li>
+<ol><li> Go to  <code class="path">C:\Users\Public\Documents\Embarcadero\Studio\\Samples\Object Pascal\Database\FireDAC\Tool\reFind\DBX2FDMigration\Demo</code> folder. </li>
 <li> Double-click the <b>migration.bat</b> application to start the migration process.</li></ol>
 <h3><span class="mw-headline" id="Creating_the_new_FireDAC_Connection_Definition">Creating the new FireDAC Connection Definition</span></h3>
-<ol><li> Open the project <b>MeetingOrganizer.dproj</b> located at <code class="path">C:\Users\Public\Documents\Embarcadero\Studio\20.0\Samples\Object Pascal\Database\FireDAC\Tool\reFind\DBX2FDMigration\Demo\Forms\FireDAC_MeetingOrg</code></li>
+<ol><li> Open the project <b>MeetingOrganizer.dproj</b> located at <code class="path">C:\Users\Public\Documents\Embarcadero\Studio\\Samples\Object Pascal\Database\FireDAC\Tool\reFind\DBX2FDMigration\Demo\Forms\FireDAC_MeetingOrg</code></li>
 <li> Create a FireDAC <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/Defining_Connection_(FireDAC)" title="rad en:Defining Connection (FireDAC)">connection definition</a> using the <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/FDExplorer" title="rad en:FDExplorer">FireDAC Explorer</a>. 
 <ol><li> Go to <font color="#598527"><b>Tools &gt; FireDAC Explorer</b></font>.SYSDBA</li>
 <li> In the FireDAC Explorer tool, go to <font color="#598527"><b> File &gt; New &gt; Connection Definition</b></font>.</li>

@@ -31,8 +31,8 @@
 <h2><span class="mw-headline" id="Location">Location</span></h2>
 <p>You can find the <b>Monitor Demo</b> project at:
 </p>
-<ul><li> <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Carnival | Samples</b></font> and then navigate to <b>CPP\Database\IBX\InterBaseToGo</b>.</li>
-<li> <b>Subversion Repository for C++:</b> <a class="external free" href="http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Carnival/CPP/Database/IBX/InterBaseToGo/" rel="nofollow" target="_blank">http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Carnival/CPP/Database/IBX/InterBaseToGo/</a></li></ul>
+<ul><li> <font color="#598527"><b>Start | Programs | Embarcadero RAD Studio Rio | Samples</b></font> and then navigate to <b>CPP\Database\IBX\InterBaseToGo</b>.</li>
+<li> <b>Subversion Repository for C++:</b> <a class="external free" href="http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Rio/CPP/Database/IBX/InterBaseToGo/" rel="nofollow" target="_blank">http://sourceforge.net/p/radstudiodemos/code/HEAD/tree/branches/RADStudio_Rio/CPP/Database/IBX/InterBaseToGo/</a></li></ul>
 <h2><span class="mw-headline" id="Description">Description</span></h2>
 <p>This sample has two <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/FMX.Grid.TStringGrid" title="lib en:FMX.Grid.TStringGrid">TStringGrid</a> components. The grid on the top shows the content of the <b>Customer</b> table from the <b>Employee</b> database. The lower grid is related to the grid on the top, and it shows all the records from the <b>Sales</b> table associated with the selected customer. 
 </p><p>This sample runs on Win32, Win64, and on Mac OSX versions starting with 10.9.
@@ -69,7 +69,7 @@
 </p>
 </td></tr></table>
 <h2><span class="mw-headline" id="Implementation">Implementation</span></h2>
-<p>This sample uses a <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/IBX.IBDatabase.TIBDatabase" title="lib en:IBX.IBDatabase.TIBDatabase"> TIBDatabase</a> component to connect to the <b>EMPLOYEE.gdb</b> database, which is available in the <b>C:\Users\Public\Documents\Embarcadero\Studio\20.0\Samples\Data</b> directory.
+<p>This sample uses a <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/IBX.IBDatabase.TIBDatabase" title="lib en:IBX.IBDatabase.TIBDatabase"> TIBDatabase</a> component to connect to the <b>EMPLOYEE.gdb</b> database, which is available in the <b>C:\Users\Public\Documents\Embarcadero\Studio\\Samples\Data</b> directory.
 </p><p>The relations on the different database components are created using LiveBindings. Select <font color="#598527"><b> View &gt; LiveBindings Designer</b></font> to open the <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/LiveBindings_Designer" title="rad en:LiveBindings Designer">LiveBindings Designer</a> pane where you can see the bindings between the components. You can also see the relations in the <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/Data.Bind.Components.TBindingsList" title="lib en:Data.Bind.Components.TBindingsList"> TBindingsList</a> component, this component is automatically added to the project once a relation using <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/LiveBindings_in_RAD_Studio" title="rad en:LiveBindings in RAD Studio"> livebindings</a> is created. 
 </p><p>The <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/Data.Bind.DBScope.TBindSourceDB" title="lib en:Data.Bind.DBScope.TBindSourceDB"> Data.Bind.DBScope.TBindSourceDB</a> is a nonvisual component that appears automatically after creating the binding.
 </p><p>The <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/Data.Bind.DBScope.TBindSourceDB" title="lib en:Data.Bind.DBScope.TBindSourceDB"> Data.Bind.DBScope.TBindSourceDB</a> allows the connection between the <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/IBX.IBCustomDataSet.TIBDataSet" title="lib en:IBX.IBCustomDataSet.TIBDataSet"> IBX.IBCustomDataSet.TIBDataSet</a> and the access components: <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/FMX.Grid.TStringGrid" title="lib en:FMX.Grid.TStringGrid"> FMX.Grid.TStringGrid</a> and <a class="extiw" href="http://docwiki.embarcadero.com/Libraries/Carnival/en/Fmx.Bind.Navigator.TBindNavigator" title="lib en:Fmx.Bind.Navigator.TBindNavigator"> Fmx.Bind.Navigator.TBindNavigator</a>.
@@ -89,9 +89,9 @@
 <li> <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/Add_a_Data_Module_(IBX_General_Tutorial)" title="rad en:Add a Data Module (IBX General Tutorial)"> Add a Data Module (IBX General Tutorial)</a></li>
 <li> <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/Add_Database_Components_(IBX_No_Code_Tutorial)" title="rad en:Add Database Components (IBX No Code Tutorial)"> Add Database Components (IBX No Code Tutorial)</a></li>
 <li> <a class="extiw" href="http://docwiki.embarcadero.com/RADStudio/Carnival/en/Tutorial:_Linking_Controls_via_LiveBindings_Designer" title="rad en:Tutorial: Linking Controls via LiveBindings Designer"> Tutorial: Linking Controls via LiveBindings Designer</a></li>
-<li> <a href="http://docwiki.embarcadero.com/CodeExamples/Carnival/en/IBX.AdminTool_Sample" target="_blank" title="IBX.AdminTool Sample">IBX.AdminTool Sample</a></li>
-<li> <a href="http://docwiki.embarcadero.com/CodeExamples/Carnival/en/IBX.IBMastApp_Sample" target="_blank" title="IBX.IBMastApp Sample">IBX.IBMastApp Sample</a></li>
-<li> <a href="http://docwiki.embarcadero.com/CodeExamples/Carnival/en/IBX.MtsPool_Sample" target="_blank" title="IBX.MtsPool Sample">IBX.MtsPool Sample</a></li></ul>
+<li> <a href="http://docwiki.embarcadero.com/CodeExamples/Rio/en/IBX.AdminTool_Sample" target="_blank" title="IBX.AdminTool Sample">IBX.AdminTool Sample</a></li>
+<li> <a href="http://docwiki.embarcadero.com/CodeExamples/Rio/en/IBX.IBMastApp_Sample" target="_blank" title="IBX.IBMastApp Sample">IBX.IBMastApp Sample</a></li>
+<li> <a href="http://docwiki.embarcadero.com/CodeExamples/Rio/en/IBX.MtsPool_Sample" target="_blank" title="IBX.MtsPool Sample">IBX.MtsPool Sample</a></li></ul>
 
 
 

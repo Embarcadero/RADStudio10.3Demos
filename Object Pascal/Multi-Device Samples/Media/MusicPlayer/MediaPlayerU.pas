@@ -87,9 +87,12 @@ type
     procedure volTimerTimer(Sender: TObject);
     procedure btnCloseSettingsClick(Sender: TObject);
   private
+{$IFDEF ANDROID}
     FPermissionReadExternalStorage: string;
+
     procedure DisplayRationale(Sender: TObject; const APermissions: TArray<string>; const APostRationaleProc: TProc);
     procedure ReadStoragePermissionRequestResult(Sender: TObject; const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>);
+{$ENDIF}
 {$IFDEF IOS}
     procedure RequestMediaLibraryAccessHandler(Status: MPMediaLibraryAuthorizationStatus);
 {$ENDIF}
@@ -173,18 +176,6 @@ begin
   mvSettings.HideMaster;
 end;
 
-// Optional rationale display routine to display permission requirement rationale to the user
-procedure TFMXMusicPlayerFrm.DisplayRationale(Sender: TObject; const APermissions: TArray<string>; const APostRationaleProc: TProc);
-begin
-  // Show an explanation to the user *asynchronously* - don't block this thread waiting for the user's response!
-  // After the user sees the explanation, invoke the post-rationale routine to request the permissions
-  TDialogService.ShowMessage('The app needs to read files from your device storage to show you the songs and albums available to you',
-    procedure(const AResult: TModalResult)
-    begin
-      APostRationaleProc;
-    end);
-end;
-
 procedure TFMXMusicPlayerFrm.DoUpdateUI(newPos: Single);
 var
   handler: TNotifyEvent;
@@ -210,6 +201,19 @@ begin
   StateChanged(TMPPlaybackState.Playing);
 end;
 
+{$IFDEF ANDROID}
+// Optional rationale display routine to display permission requirement rationale to the user
+procedure TFMXMusicPlayerFrm.DisplayRationale(Sender: TObject; const APermissions: TArray<string>; const APostRationaleProc: TProc);
+begin
+  // Show an explanation to the user *asynchronously* - don't block this thread waiting for the user's response!
+  // After the user sees the explanation, invoke the post-rationale routine to request the permissions
+  TDialogService.ShowMessage('The app needs to read files from your device storage to show you the songs and albums available to you',
+    procedure(const AResult: TModalResult)
+    begin
+      APostRationaleProc;
+    end);
+end;
+
 procedure TFMXMusicPlayerFrm.ReadStoragePermissionRequestResult(Sender: TObject; const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>);
 begin
   // 1 permission involved: READ_EXTERNAL_STORAGE
@@ -218,11 +222,12 @@ begin
   else
     TDialogService.ShowMessage('Cannot list out the song files because the required permission is not granted');
 end;
+{$ENDIF}
 
 {$IFDEF IOS}
 procedure TFMXMusicPlayerFrm.RequestMediaLibraryAccessHandler(Status: MPMediaLibraryAuthorizationStatus);
 begin
-  TThread.Queue(nil,
+  TThread.ForceQueue(nil,
     procedure
     begin
       if Status = MPMediaLibraryAuthorizationStatusAuthorized then

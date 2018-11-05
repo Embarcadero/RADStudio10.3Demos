@@ -43,6 +43,14 @@ object frmMain: TfrmMain
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           OnKeyUp = edtSearchKeyUp
+          object ClearEditButton1: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 28.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
         end
       end
     end

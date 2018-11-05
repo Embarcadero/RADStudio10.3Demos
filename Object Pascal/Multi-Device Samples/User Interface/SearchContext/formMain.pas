@@ -33,15 +33,14 @@ type
     edtSearch: TEdit;
     MainMenu1: TMainMenu;
     Panel1: TPanel;
+    ClearEditButton1: TClearEditButton;
     procedure LoadImages(Sender: TObject);
-    procedure edtSearchKeyUp(Sender: TObject; var Key: Word;
-      var KeyChar: Char; Shift: TShiftState);
+    procedure edtSearchKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
     procedure ManageClick(Sender: TObject);
     procedure LoadData(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
-    ClearButton: TClearEditButton;
     SearchBandManager : TSearchBandManager;
     function InitializeBandManager : TSearchBand;
     procedure ItemSelected(Sender : TObject);
@@ -106,9 +105,6 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  ClearButton := TClearEditButton.Create(nil);
-  ClearButton.Lock;
-  ClearButton.Parent := edtSearch;
   LoadData(nil);
 end;
 
@@ -178,8 +174,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.edtSearchKeyUp(Sender: TObject; var Key: Word;
-  var KeyChar: Char; Shift: TShiftState);
+procedure TfrmMain.edtSearchKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
 begin
   if Self.SearchBandManager = nil then
     Exit;

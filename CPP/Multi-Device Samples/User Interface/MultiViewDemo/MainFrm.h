@@ -13,12 +13,14 @@
 #define MainFrmH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
-#include <FMX.Controls.hpp>
-#include <FMX.Forms.hpp>
+#include <System.ImageList.hpp>
 #include <FMX.Colors.hpp>
+#include <FMX.Controls.hpp>
 #include <FMX.Controls.Presentation.hpp>
 #include <FMX.Edit.hpp>
 #include <FMX.EditBox.hpp>
+#include <FMX.Forms.hpp>
+#include <FMX.ImgList.hpp>
 #include <FMX.Layouts.hpp>
 #include <FMX.ListBox.hpp>
 #include <FMX.MultiView.hpp>
@@ -27,8 +29,6 @@
 #include <FMX.TabControl.hpp>
 #include <FMX.Types.hpp>
 #include "FmxMultiViewCustomPresentation.h"
-#include <FMX.ImgList.hpp>
-#include <System.ImageList.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {

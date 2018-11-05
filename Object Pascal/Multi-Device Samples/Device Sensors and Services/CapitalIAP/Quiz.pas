@@ -68,7 +68,7 @@ var
   QuizForm: TQuizForm = nil;
   States: array[1..cMaxNumberAreas, 1..7] of string =
 (('Alabama', 'Montgomery', 'c', 'Birmingham', 'Mobile', 'Huntsville', 'Tuscaloosa'),
-('Alaska' ,'Anchorage', 'w', 'Fairbanks', 'Juneau', 'Sitka', 'Ketchikan'),
+('Alaska', 'Juneau', 'w', 'Fairbanks', 'Anchorage', 'Sitka', 'Ketchikan'),
 ('Arizona', 'Phoenix', 'w', 'Tucson', 'Mesa', 'Chandler', 'Glendale'),
 ('Arkansas', 'Little Rock', 'c', 'Fort Smith', 'North Little Rock', 'Fayetteville', 'Springdale'),
 ('California', 'Sacramento', 'w', 'Los Angeles', 'San Diego', 'San Jose', 'San Francisco'),
@@ -82,7 +82,7 @@ var
 ('Illinois', 'Springfield', 'c', 'Chicago', 'Aurora', 'Rockford', 'Joliet'),
 ('Indiana', 'Indianapolis', 'e', 'Fort Wayne', 'Evansville', 'South Bend', 'Carmel'),
 ('Iowa', 'Des Moines', 'c', 'Cedar Rapids', 'Davenport', 'Sioux City', 'Waterloo'),
-('Kansas', 'Wichita', 'c', 'Overland Park', 'Kansas City', 'Topeka', 'Olathe'),
+('Kansas', 'Topeka', 'c', 'Overland Park', 'Kansas City', 'Wichita', 'Olathe'),
 ('Kentucky', 'Frankfort', 'c', 'Louisville', 'Lexington', 'Bowling Green', 'Owensboro'),
 ('Louisiana', 'Baton Rouge', 'c', 'New Orleans', 'Shreveport', 'Lafayette', 'Lake Charles'),
 ('Maine', 'Augusta', 'e', 'Portland', 'Lewiston', 'Bangor', 'South Portland'),
